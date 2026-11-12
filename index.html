@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cubic Yard Reference: Material Weights, Depths, Coverage, Bags &amp; Loads</title>
+<meta name="description" content="Sortable lookup tables for bulk landscaping and construction materials: tons per cubic yard, typical depths, coverage per cubic yard, bags per cubic yard and delivery load sizes.">
+<style>
+:root{--bg:#f2f5ef;--ink:#1c2a21;--mute:#5d6b62;--line:#cfd8cb;--green:#2e6b3e;--pale:#e2ebdd;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+header,main,footer{max-width:980px;margin:0 auto;padding:0 16px}
+header{padding-top:32px}
+h1{font-size:1.75rem;line-height:1.2;margin:0 0 6px}
+h2{font-size:1.2rem;margin:36px 0 4px}
+p{margin:0 0 8px;color:var(--mute)}
+.note{font-size:.9rem}
+.bar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:18px 0 0}
+input,select{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+input:focus-visible,select:focus-visible,th button:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+#q{flex:1 1 260px}
+.calc{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:6px;padding:14px 16px;margin-top:20px}
+.calc .row{display:flex;gap:12px;flex-wrap:wrap;align-items:end}
+.calc label{display:flex;flex-direction:column;font-size:.85rem;color:var(--mute);gap:4px}
+.calc input{width:110px}
+#out{margin:12px 0 0;color:var(--ink);font-weight:600}
+.wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:6px;margin-top:10px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-variant-numeric:tabular-nums}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+td:first-child{white-space:normal;min-width:170px}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--pale)}
+thead th{background:var(--pale);font-weight:600;position:sticky;top:0}
+th button{all:unset;cursor:pointer;font-weight:600}
+th button::after{content:" \2195";color:var(--mute);font-weight:400}
+th[aria-sort=ascending] button::after{content:" \2191";color:var(--green)}
+th[aria-sort=descending] button::after{content:" \2193";color:var(--green)}
+a{color:var(--green)}
+footer{padding:28px 16px 48px;margin-top:28px;border-top:1px solid var(--line);font-size:.9rem;color:var(--mute)}
+.hide{display:none}
+@media (prefers-reduced-motion:no-preference){tbody tr{transition:background .15s}}
+</style>
+</head>
+<body>
+<header>
+<h1>Cubic Yard Reference for Bulk Landscaping Materials</h1>
+<p>Weights, depths, coverage, bag counts and load sizes in one place. Click a column heading to sort. Type in the box to filter every table.</p>
+<div class="bar"><input id="q" type="search" placeholder="Filter rows, e.g. gravel, path, 2 cu ft" aria-label="Filter all tables"></div>
+<div class="calc">
+<div class="row">
+<label>Area (ft²)<input id="a" type="number" min="0" value="200"></label>
+<label>Depth (in)<input id="d" type="number" min="0" step="0.25" value="3"></label>
+<label>Material<select id="m"></select></label>
+<label>Extra (%)<input id="b" type="number" min="0" value="10"></label>
+</div>
+<p id="out" aria-live="polite"></p>
+<p class="note">Formula: yd³ = ft² × inches ÷ 324, then × (1 + extra). Tons use the typical weight in table 1.</p>
+</div>
+</header>
+<main>
+
+<h2>1. Material weight per cubic yard</h2>
+<p>Typical loose weights. Moisture shifts these by roughly 15–20%, so confirm with your supplier before ordering by the ton.</p>
+<div class="wrap"><table id="t1"><thead><tr>
+<th><button>Material</button></th><th><button>t/m³</button></th><th><button>lb/ft³</button></th><th><button>US tons per yd³</button></th><th><button>Typical extra</button></th><th><button>Common use</button></th>
+</tr></thead><tbody>
+<tr data-t="0.29"><td>Bark / wood mulch</td><td>0.35</td><td>22</td><td>0.29</td><td data-v="5">5–10%</td><td>Beds, tree rings</td></tr>
+<tr data-t="0.38"><td>Rubber mulch</td><td>0.45</td><td>28</td><td>0.38</td><td data-v="5">5–10%</td><td>Playgrounds</td></tr>
+<tr data-t="0.51"><td>Compost</td><td>0.6</td><td>37</td><td>0.51</td><td data-v="10">10–15%</td><td>Soil amendment</td></tr>
+<tr data-t="0.93"><td>Garden soil mix</td><td>1.1</td><td>69</td><td>0.93</td><td data-v="10">10–15%</td><td>Raised beds</td></tr>
+<tr data-t="1.01"><td>Screened loam</td><td>1.2</td><td>75</td><td>1.01</td><td data-v="10">10–15%</td><td>Lawn and bed prep</td></tr>
+<tr data-t="1.10"><td>Topsoil</td><td>1.3</td><td>81</td><td>1.10</td><td data-v="10">10–15%</td><td>New lawns, grading</td></tr>
+<tr data-t="1.10"><td>Asphalt millings</td><td>1.3</td><td>81</td><td>1.10</td><td data-v="10">10–15%</td><td>Driveways, lots</td></tr>
+<tr data-t="1.26"><td>Play sand (dry)</td><td>1.5</td><td>94</td><td>1.26</td><td data-v="5">5–10%</td><td>Sandboxes</td></tr>
+<tr data-t="1.26"><td>Pea gravel</td><td>1.5</td><td>94</td><td>1.26</td><td data-v="5">5–10%</td><td>Paths, drainage</td></tr>
+<tr data-t="1.26"><td>Fill dirt</td><td>1.5</td><td>94</td><td>1.26</td><td data-v="15">15–20%</td><td>Backfill, leveling</td></tr>
+<tr data-t="1.35"><td>Sand</td><td>1.6</td><td>100</td><td>1.35</td><td data-v="5">5–10%</td><td>Paver setting bed</td></tr>
+<tr data-t="1.35"><td>Gravel / pebbles</td><td>1.6</td><td>100</td><td>1.35</td><td data-v="5">5–10%</td><td>Drives, paths, drains</td></tr>
+<tr data-t="1.35"><td>Crushed limestone (#57)</td><td>1.6</td><td>100</td><td>1.35</td><td data-v="5">5–10%</td><td>Drainage, bedding</td></tr>
+<tr data-t="1.43"><td>Decomposed granite</td><td>1.7</td><td>106</td><td>1.43</td><td data-v="10">10–15%</td><td>Pathways, patios</td></tr>
+<tr data-t="1.43"><td>Clay fill</td><td>1.7</td><td>106</td><td>1.43</td><td data-v="15">15–20%</td><td>Pond and berm fill</td></tr>
+<tr data-t="1.43"><td>Riprap / large stone</td><td>1.7</td><td>106</td><td>1.43</td><td data-v="5">5–10%</td><td>Erosion control</td></tr>
+<tr data-t="1.60"><td>Crushed rock / road base</td><td>1.9</td><td>119</td><td>1.60</td><td data-v="10">10–15%</td><td>Base under pavers, slabs</td></tr>
+<tr data-t="2.02"><td>Concrete</td><td>2.4</td><td>150</td><td>2.02</td><td data-v="5">5–10%</td><td>Slabs, footings</td></tr>
+</tbody></table></div>
+
+<h2>2. Typical depth by use</h2>
+<p>Planning depths only. Follow your supplier's advice or local specifications for structural work.</p>
+<div class="wrap"><table id="t2"><thead><tr>
+<th><button>Use</button></th><th><button>Depth (in)</button></th><th><button>Depth (mm)</button></th><th><button>Sq ft per yd³ at max depth</button></th>
+</tr></thead><tbody>
+<tr><td>Lawn topdressing</td><td data-v="0.25">¼–½</td><td data-v="6">6–12</td><td>648</td></tr>
+<tr><td>Paver sand setting bed</td><td data-v="1">1</td><td data-v="25">25</td><td>324</td></tr>
+<tr><td>Compost top-dress on vegetable beds</td><td data-v="1">1–2</td><td data-v="25">25–50</td><td>162</td></tr>
+<tr><td>Garden beds and mulch</td><td data-v="2">2–3</td><td data-v="50">50–75</td><td>108</td></tr>
+<tr><td>Tree rings (keep mulch off the trunk)</td><td data-v="2">2–3</td><td data-v="50">50–75</td><td>108</td></tr>
+<tr><td>Decorative stone beds</td><td data-v="2">2–3</td><td data-v="50">50–75</td><td>108</td></tr>
+<tr><td>Mulch or gravel paths</td><td data-v="3">3–4</td><td data-v="75">75–100</td><td>81</td></tr>
+<tr><td>Concrete sidewalk slab</td><td data-v="4">4</td><td data-v="100">100</td><td>81</td></tr>
+<tr><td>Base under pavers</td><td data-v="4">4–6</td><td data-v="100">100–150</td><td>54</td></tr>
+<tr><td>New lawn topsoil</td><td data-v="4">4–6</td><td data-v="100">100–150</td><td>54</td></tr>
+<tr><td>Gravel driveway surface</td><td data-v="4">4–6</td><td data-v="100">100–150</td><td>54</td></tr>
+<tr><td>Concrete driveway slab</td><td data-v="4">4–6</td><td data-v="100">100–150</td><td>54</td></tr>
+<tr><td>French drain gravel (trench fill)</td><td data-v="6">6–12</td><td data-v="150">150–300</td><td>27</td></tr>
+<tr><td>Playground mulch</td><td data-v="8">8–12</td><td data-v="200">200–300</td><td>27</td></tr>
+<tr><td>Raised bed fill</td><td data-v="8">8–12</td><td data-v="200">200–300</td><td>27</td></tr>
+</tbody></table></div>
+
+<h2>3. Coverage per cubic yard and cubic metre</h2>
+<p>ft² per yd³ = 324 ÷ depth in inches. m² per m³ = 1000 ÷ depth in mm.</p>
+<div class="wrap"><table id="t3"><thead><tr>
+<th><button>Depth (in)</button></th><th><button>Depth (mm)</button></th><th><button>ft² per 1 yd³</button></th><th><button>m² per 1 m³</button></th>
+</tr></thead><tbody>
+<tr><td>1</td><td>25</td><td>324</td><td>39.4</td></tr>
+<tr><td>2</td><td>51</td><td>162</td><td>19.7</td></tr>
+<tr><td>3</td><td>76</td><td>108</td><td>13.1</td></tr>
+<tr><td>4</td><td>102</td><td>81</td><td>9.8</td></tr>
+<tr><td>6</td><td>152</td><td>54</td><td>6.6</td></tr>
+<tr><td>8</td><td>203</td><td>40.5</td><td>4.9</td></tr>
+<tr><td>12</td><td>305</td><td>27</td><td>3.3</td></tr>
+</tbody></table></div>
+
+<h2>4. Bags needed per cubic yard and cubic metre</h2>
+<p>Rounded up to whole bags. Nominal bag sizes vary slightly by brand.</p>
+<div class="wrap"><table id="t4"><thead><tr>
+<th><button>Bag size</button></th><th><button>Litres</button></th><th><button>Bags per yd³</button></th><th><button>Bags per m³</button></th>
+</tr></thead><tbody>
+<tr><td>25 L</td><td>25</td><td>31</td><td>40</td></tr>
+<tr><td>30 L</td><td>30</td><td>26</td><td>34</td></tr>
+<tr><td>40 L</td><td>40</td><td>20</td><td>25</td></tr>
+<tr><td>50 L</td><td>50</td><td>16</td><td>20</td></tr>
+<tr><td>0.5 cu ft</td><td>14.2</td><td>54</td><td>71</td></tr>
+<tr><td>1 cu ft</td><td>28.3</td><td>27</td><td>36</td></tr>
+<tr><td>1.5 cu ft</td><td>42.5</td><td>18</td><td>24</td></tr>
+<tr><td>2 cu ft</td><td>56.6</td><td>14</td><td>18</td></tr>
+<tr><td>3 cu ft</td><td>85</td><td>9</td><td>12</td></tr>
+</tbody></table></div>
+
+<h2>5. Delivery load sizes</h2>
+<p>Volume per load. Heavy materials can reach a vehicle's weight limit before its volume limit, so check tons too.</p>
+<div class="wrap"><table id="t5"><thead><tr>
+<th><button>Load</button></th><th><button>m³</button></th><th><button>yd³</button></th><th><button>ft³</button></th>
+</tr></thead><tbody>
+<tr><td>Box trailer</td><td>0.75</td><td>1.0</td><td>26</td></tr>
+<tr><td>Tandem trailer</td><td>1.5</td><td>2.0</td><td>53</td></tr>
+<tr><td>5 yd³ truck</td><td>3.8</td><td>5.0</td><td>135</td></tr>
+<tr><td>Small tipper</td><td>6</td><td>7.8</td><td>212</td></tr>
+<tr><td>10 yd³ truck</td><td>7.6</td><td>10.0</td><td>270</td></tr>
+<tr><td>Large tipper</td><td>10</td><td>13.1</td><td>353</td></tr>
+<tr><td>14 yd³ truck</td><td>10.7</td><td>14.0</td><td>378</td></tr>
+</tbody></table></div>
+
+<h2>Unit shortcuts</h2>
+<div class="wrap"><table><thead><tr><th>Convert</th><th>Value</th></tr></thead><tbody>
+<tr><td>1 yd³ in ft³</td><td>27</td></tr>
+<tr><td>1 yd³ in m³</td><td>0.7646</td></tr>
+<tr><td>1 m³ in yd³</td><td>1.308</td></tr>
+<tr><td>1 yd³ in litres</td><td>764.6</td></tr>
+<tr><td>1 tonne in US tons</td><td>1.1023</td></tr>
+</tbody></table></div>
+</main>
+<footer>
+<p>Weights and depths are typical planning values, not specifications. Data compiled from and expanded on this guide: <a href="https://yardtoolshub.com/">cubic yard calculator for dirt, gravel, mulch &amp; concrete</a>.</p>
+</footer>
+<script>
+(function(){
+var $=function(s,r){return (r||document).querySelector(s)},all=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+all("table").forEach(function(t){
+ all("th",t).forEach(function(th,i){
+  var b=$("button",th);if(!b)return;
+  b.addEventListener("click",function(){
+   var asc=th.getAttribute("aria-sort")!=="ascending";
+   all("th",t).forEach(function(x){x.removeAttribute("aria-sort")});
+   th.setAttribute("aria-sort",asc?"ascending":"descending");
+   var body=$("tbody",t),rows=all("tr",body);
+   var val=function(r){var c=r.children[i],v=c.getAttribute("data-v")||c.textContent,n=parseFloat(v);return isNaN(n)?v.toLowerCase():n};
+   rows.sort(function(a,b){var x=val(a),y=val(b);if(typeof x!==typeof y){x=String(x);y=String(y)}return (x>y?1:x<y?-1:0)*(asc?1:-1)});
+   rows.forEach(function(r){body.appendChild(r)});
+  });
+ });
+});
+$("#q").addEventListener("input",function(e){
+ var q=e.target.value.trim().toLowerCase();
+ all("tbody tr").forEach(function(r){r.classList.toggle("hide",q&&r.textContent.toLowerCase().indexOf(q)<0)});
+});
+var sel=$("#m"),rows1=all("#t1 tbody tr");
+rows1.forEach(function(r,i){var o=document.createElement("option");o.value=r.getAttribute("data-t");o.textContent=r.children[0].textContent;sel.appendChild(o)});
+sel.selectedIndex=rows1.map(function(r){return r.children[0].textContent}).indexOf("Gravel / pebbles");
+function calc(){
+ var a=+$("#a").value||0,d=+$("#d").value||0,b=+$("#b").value||0,w=+sel.value||0;
+ var y=a*d/324*(1+b/100);
+ $("#out").textContent=y.toFixed(2)+" yd³ ("+(y*27).toFixed(0)+" ft³, "+(y*0.7646).toFixed(2)+" m³), about "+(y*w).toFixed(2)+" US tons";
+}
+["#a","#d","#b","#m"].forEach(function(s){$(s).addEventListener("input",calc)});
+calc();
+})();
+</script>
+</body>
+</html>
